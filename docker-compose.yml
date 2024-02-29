@@ -1,25 +1,49 @@
-version: '3.8'
+version: '3.5'
+
 services:
-  db:
-    image: mysql:8.0
-    cap_add:
-      - SYS_NICE
-    restart: always
+  postgres:
+    container_name: postgres_container
+    image: postgres
     environment:
-      - MYSQL_DATABASE=blogdb
-      - MYSQL_ROOT_PASSWORD=root
-    ports:
-      - '3306:3306'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: localhostpostgres
+      PGDATA: /data/postgres
     volumes:
-      - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - 5050:80
+    networks:
+      - postgres
+    restart: unless-stopped
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - postgres    
+
+networks:
+  postgres:
+    driver: bridge
 
 volumes:
-  db:
-    driver: local
+    postgres:
+    pgadmin:
