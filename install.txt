@@ -14,13 +14,27 @@ docker run -it --rm elixir
 open cmd bash: docker run -it --rm elixir bash
 
 
-//* INSTALL versionmanager like NVM *\\
-\curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 
-kiex list
-kiex install 0.12.5
-kiex use 0.12.5
-
+//*install asdf version manager
+$ sudo apt update
+$ sudo apt install curl git
+$ sudo apt autoremove
+$ git clone https://github.com/asdf-vm/asdf.git ~/.asdf 
+$ nano ~/.bashrc
+<<<<
+. ~/.asdf/asdf.sh
+. ~/.asdf/completions/asdf.bash
+export KERL_CONFIGURE_OPTIONS=" --disable-debug --without-javac"
+>>>>
+$ source ~/.bashrc
+$ asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+$ asdf list-all erlang
+$ asdf install erlang 25.0
+$ asdf global erlang
+$ asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+$ asdf list-all elixir
+$ asdf install elixir 
+$ asdf global elixir 
 
 //* INSTALL VSCODE EXTENSION *\\
 Postman.postman-for-vscode
