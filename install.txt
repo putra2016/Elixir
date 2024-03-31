@@ -9,7 +9,7 @@ $ sudo apt install elixir erlang-dev erlang-xmerl
 $ elixir --version  ////untuk cek versi elixir
 $ iex  ////untuk buka cmd bash elixir
 
-// docker
+// docker source
 docker run -it --rm elixir
 open cmd bash: docker run -it --rm elixir bash
 
