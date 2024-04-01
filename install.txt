@@ -1,6 +1,6 @@
 https://elixir-lang.org/install.html
 
-//* INSTALL ELIXIR *\\
+//* INSTALL ELIXIR *\\\
 
 // ubuntu 
 $ sudo add-apt-repository ppa:rabbitmq/rabbitmq-erlang
