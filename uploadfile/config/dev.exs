@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :blog_app, BlogApp.Repo,
   username: "postgres",
-  password: "localhostpostgres",
+  password: "localhostpostgress",
   hostname: "localhost",
   database: "blog_app_dev",
   stacktrace: true,
